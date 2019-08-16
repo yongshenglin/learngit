@@ -1,0 +1,24 @@
+watch: {
+  监听formLabelAlign中各属性, 可以和vuex双向绑定，但是会报错找不到dispatch，
+  所以我使用的是用一个计算属性来做中间值，赋值给当前data上的变量，目测因为element的原因不可以直接使用计算属性
+
+  'formLabelAlign.username'(newVal, oldVal) {
+    // const name = this.formLabelAlign.username
+    // console.log(newVal)
+    try {
+      this.usernameChange(newVal)
+
+    } catch (e) {
+      // console.log(e)
+    }
+    // this.$store.dispatch('usernameChange', newVal)
+  },
+  'formLabelAlign.password'(newVal) {
+    // const pass = this.formLabelAlign.password
+    this.passwordChange(newVal)
+  },
+  'formLabelAlign.phoneNum'() {
+    const phoneNum = this.formLabelAlign.phoneNum
+    this.phoneNumChange(phoneNum)
+  }
+},
