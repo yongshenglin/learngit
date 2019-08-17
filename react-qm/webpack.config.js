@@ -1,0 +1,40 @@
+var path=require('path');
+module.exports={
+    entry:"./app/app.js",
+    output:{
+        path:path.resolve(__dirname,"./"),
+        filename:'index.js'
+    },
+    devServer: {
+        historyApiFallback: true
+    },
+    module:{
+        rules:[
+            {
+                test:/\.js$/,
+                exclude:/node_modules/,
+                loader:'babel-loader',
+                query:{
+                    presets:['es2015','react','stage-0'],
+                }
+            },
+            {
+                test:/\.css$/,
+                exclude:/node_modules/,
+                loader:'style-loader!css-loader'
+            },
+            {
+                test:/\.jsx$/,
+                exclude:/node_modules/,
+                loader:'babel-loader',
+                query:{
+                    presets:['es2015','react','stage-0'],
+                }
+            },
+            {
+                test:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader:"url-loader?limit=8129&name=img/[name].[hash:8].[ext]"
+            }
+        ]
+    }
+}
